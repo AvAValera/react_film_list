@@ -32,7 +32,7 @@ export default class Search extends Component {
                     <div className="Filter">
                         <label>
                             <input onChange={this.changeFilter} 
-                            class="with-gap" 
+                            className="with-gap" 
                             name="filter" 
                             type="radio" 
                             data-atribute='all'
@@ -42,7 +42,7 @@ export default class Search extends Component {
                         </label>
                         <label>
                             <input onChange={this.changeFilter} 
-                            class="with-gap" 
+                            className="with-gap" 
                             name="filter" 
                             type="radio" 
                             data-atribute='movie'
@@ -52,7 +52,7 @@ export default class Search extends Component {
                         </label>
                         <label>
                             <input onChange={this.changeFilter} 
-                            class="with-gap" 
+                            className="with-gap" 
                             name="filter" 
                             type="radio" 
                             data-atribute='series'
@@ -62,7 +62,7 @@ export default class Search extends Component {
                         </label>
                     </div>
                     <button onClick={() => this.props.onSearch(this.state.search, this.state.filter)} 
-                        class="btn-search btn waves-effect waves-light" 
+                        className="btn-search btn waves-effect waves-light" 
                         type="submit" 
                         name="action">
                         Search
