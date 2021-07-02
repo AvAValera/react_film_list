@@ -2,12 +2,12 @@ import React from "react";
 
 export default function Header() {
     return (
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#!" class="brand-logo center">
+        <nav className="green darken-3">
+            <div className="nav-wrapper">
+                <a href="#!" className="brand-logo center">
                     Logo
                 </a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <ul id="nav-mobile" className="left hide-on-med-and-down">
                     <li>
                         <a href="#!">JavaScript</a>
                     </li>
