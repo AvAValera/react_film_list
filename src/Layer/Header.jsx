@@ -9,7 +9,10 @@ export default function Header() {
                 </a>
                 <ul id="nav-mobile" className="left hide-on-med-and-down">
                     <li>
-                        <a href="#!">JavaScript</a>
+                        <a href="#!">Home</a>
+                    </li>
+                    <li>
+                        <a href="#!">About</a>
                     </li>
                 </ul>
             </div>
