@@ -1,75 +1,76 @@
-import React, { Component } from "react";
+import React, {useState} from "react";
 
-export default class Search extends Component {
-    state = {
-        search : '',
-        filter : 'all'
-    }
-    enterSearch = (e) => {
+const Search = (props) => {
+    const {onSearch} = props
+    const [search, setSearch] = useState('');
+    const [filter, setFilter] = useState('all');    
+
+    
+    const enterSearch = (e) => {
         if(e.key === 'Enter'){
-            this.props.onSearch(this.state.search, this.state.filter)
+            onSearch(search, filter)
         }
     }
 
-    changeFilter = (e) => {
-        this.setState({filter: e.target.dataset.atribute},
-            () => {this.props.onSearch(this.state.search, this.state.filter)})
+    const changeFilter = (e) => {
+        setFilter(e.target.dataset.atribute,
+            () => {onSearch(search, filter)})
     }
 
-    render() {
-        return (
-            <div className="row">
-                <div className="input-field col s12">
-                    <input
-                        placeholder="Search"
-                        id="search"
-                        type="text"
-                        className="validate"
-                        value={this.state.search}
-                        onChange={(e) => {this.setState({search: e.target.value})}}
-                        onKeyDown={this.enterSearch}
-                    />
-                    <div className="Filter">
-                        <label>
-                            <input onChange={this.changeFilter} 
-                            className="with-gap" 
-                            name="filter" 
-                            type="radio" 
-                            data-atribute='all'
-                            checked={this.state.filter === 'all'}
-                            />
-                            <span>All</span>
-                        </label>
-                        <label>
-                            <input onChange={this.changeFilter} 
-                            className="with-gap" 
-                            name="filter" 
-                            type="radio" 
-                            data-atribute='movie'
-                            checked={this.state.filter === 'movie'}
-                            />
-                            <span>Movies</span>
-                        </label>
-                        <label>
-                            <input onChange={this.changeFilter} 
-                            className="with-gap" 
-                            name="filter" 
-                            type="radio" 
-                            data-atribute='series'
-                            checked={this.state.filter === 'series'}
-                            />
-                            <span>Series</span>
-                        </label>
-                    </div>
-                    <button onClick={() => this.props.onSearch(this.state.search, this.state.filter)} 
-                        className="btn-search btn waves-effect waves-light" 
-                        type="submit" 
-                        name="action">
-                        Search
-                    </button>
+    
+    return (
+        <div className="row">
+            <div className="input-field col s12">
+                <input
+                    placeholder="Search"
+                    id="search"
+                    type="text"
+                    className="validate"
+                    value={search}
+                    onChange={(e) => {setSearch(e.target.value)}}
+                    onKeyDown = {enterSearch}
+                />
+                <div className="Filter">
+                    <label>
+                        <input onChange={changeFilter} 
+                        class="with-gap" 
+                        name="filter" 
+                        type="radio" 
+                        data-atribute='all'
+                        checked={filter === 'all'}
+                        />
+                        <span>All</span>
+                    </label>
+                    <label>
+                        <input onChange={changeFilter} 
+                        class="with-gap" 
+                        name="filter" 
+                        type="radio" 
+                        data-atribute='movie'
+                        checked={filter === 'movie'}
+                        />
+                        <span>Movies</span>
+                    </label>
+                    <label>
+                        <input onChange={changeFilter} 
+                        class="with-gap" 
+                        name="filter" 
+                        type="radio" 
+                        data-atribute='series'
+                        checked={filter === 'series'}
+                        />
+                        <span>Series</span>
+                    </label>
                 </div>
-                
+                <button onClick={() => onSearch(search, filter)} 
+                    class="btn-search btn waves-effect waves-light" 
+                    type="submit" 
+                    name="action">
+                    Search
+                </button>
             </div>
-        );
-    }
-}
+            
+        </div>
+    );
+};
+export default Search

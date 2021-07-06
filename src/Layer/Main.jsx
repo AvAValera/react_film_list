@@ -1,31 +1,39 @@
-import React, { Component } from 'react'
+import React, {useState, useEffect} from 'react'
 import '../index.css'
 import Movies from '../Component/Movies'
 import Search from '../Component/Search'
 import Preloader from '../Component/Preloader'
-export default class Main extends Component {
-    state = {
-        movies: [],
-        loading: true
-    }
-    componentDidMount() {
+const Main = () => {
+    
+    const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() =>{
         fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=ee6fcf3e&s=matrix`)
         .then(res => res.json())
-        .then(data => this.setState({movies: data.Search, loading: false}))
-    }
-    onSearch = (str, type = 'all') => {
-        this.setState({loading: true})
+        .then(data => {
+            setMovies(data.Search)
+            setLoading(false)
+        })
+    },[])
+
+    const onSearch = (str, type = 'all') => {
+        setLoading(true)
         fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=ee6fcf3e&s=${str}${type !== 'all' ? `&type=${type}` : ''}`)
         .then(res => res.json())
-        .then(data => this.setState({movies: data.Search, loading: false}))
+        .then(data => {
+            setMovies(data.Search)
+            setLoading(false)
+        })
     }
     
-    render() {
-        return (
-            <div className='Main' >
-                <Search onSearch={this.onSearch}/>
-                {this.state.loading ? <Preloader /> : (<Movies  movies={this.state.movies}/>) }
-            </div>
-        )
-    }
-}
+    
+    return (
+        <div className='Main' >
+            <Search onSearch={onSearch}/>
+            {loading ? <Preloader /> : (<Movies  movies={movies}/>) }
+        </div>
+    )
+    
+};
+export default Main

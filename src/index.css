@@ -30,3 +30,19 @@ code {
     display: flex;
     justify-content: space-around;
 }
+
+.animated{
+    animation: avatar 5s linear infinite;
+}
+
+@keyframes avatar{
+    0%   { 
+        transform: rotate(0deg) scale(.4); 
+    }
+    50% { 
+        transform: rotate(360deg) scale(1); 
+    }
+    100%{
+        transform: rotate(720deg) scale(.4);
+    }
+}
